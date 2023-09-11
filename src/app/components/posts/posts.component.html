@@ -1,0 +1,43 @@
+<app-loading *ngIf="loading"></app-loading>
+<div class="row" *ngIf="!loading">
+  <div class="col-lg-8">
+    <div class="row">
+      <div class="col-lg-6">
+        <app-post-card
+          *ngFor="let post of posts.slice(0, posts.length / 2)"
+          [post]="post"
+          (navigateTo)="navigateTo($event)"></app-post-card>
+      </div>
+      <div class="col-lg-6">
+        <app-post-card
+          *ngFor="let post of posts.slice(posts.length / 2, posts.length)"
+          [post]="post"
+          (navigateTo)="navigateTo($event)"></app-post-card>
+      </div>
+    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" *ngFor="let page of pages">
+          <a class="page-link" (click)="onPageChange(page)">{{page + 1}}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="col-lg-4">
+    <div class="card mb-4">
+      <div class="card-header">Search</div>
+      <div class="card-body">
+        <div class="input-group">
+          <input
+            [(ngModel)]="search"
+            class="form-control"
+            type="text"
+            placeholder="Enter search term..."
+            aria-label="Enter search term..."
+            aria-describedby="button-search">
+          <button class="btn btn-primary" id="button-search" type="button" (click)="searchByTitle()">Go!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

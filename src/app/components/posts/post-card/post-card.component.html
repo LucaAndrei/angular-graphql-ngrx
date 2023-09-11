@@ -1,0 +1,12 @@
+<div class="card mb-4">
+  <div class="card-body">
+    <div class="d-flex flex-column">
+      <h2 class="card-title h4">{{post.title}}</h2>
+      <p class="card-text" *ngIf="post.body">{{post.body.length > 50 ? post.body.slice(0, 50) + '...' : post.body}}</p>
+      <div class="d-flex">
+        <button type="button" class="btn btn-secondary col-lg-6" (click)="goTo('edit')">Edit</button>
+        <button type="button" class="btn btn-primary col-lg-6" (click)="goTo()">Read more →</button>
+      </div>
+    </div>
+  </div>
+</div>

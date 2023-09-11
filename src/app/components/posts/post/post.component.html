@@ -1,0 +1,29 @@
+<app-loading *ngIf="loading"></app-loading>
+<div class="row" *ngIf="!loading">
+  <div class="col-lg-12">
+    <article>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="form">
+        <header class="mb-4">
+          <h1 class="fw-bolder mb-1">
+            <input *ngIf="mode ==='edit'" class="w-100" type="text" placeholder="Post title..."
+              formControlName="title" />
+            <span *ngIf="mode !== 'edit'">{{form.get('title').value}}</span>
+          </h1>
+          <div class="text-muted fst-italic mb-2">
+            {{form.get('username').value}}
+          </div>
+        </header>
+        <section class="mb-5">
+          <textarea *ngIf="mode ==='edit'" class="form-control" formControlName="body" rows="10"
+            placeholder="Post content..."></textarea>
+          <p *ngIf="mode !=='edit'">{{form.get('body').value}}</p>
+        </section>
+        <button class="btn btn-primary" type="submit" *ngIf="mode ==='edit'">Submit</button>
+      </form>
+
+    </article>
+    <section class="mb-5" *ngIf="mode !=='edit'">
+      <app-comments [comments]="comments"></app-comments>
+    </section>
+  </div>
+</div>
